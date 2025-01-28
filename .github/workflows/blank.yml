@@ -17,6 +17,11 @@ on:
     branches-ignore:
       - 'mona/octocat'
       - 'releases/**-alpha'
+   #pull_request:
+    #branches:
+      #- 'releases/**'
+      #- '!releases/**-alpha'
+    
   issues:
     types:
       - opened
