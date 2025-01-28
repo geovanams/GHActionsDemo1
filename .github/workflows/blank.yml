@@ -9,6 +9,9 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - 'docs/**'
+    
   pull_request:
     # Sequence of patterns matched against refs/heads
     branches-ignore:
@@ -18,9 +21,22 @@ on:
     types:
       - opened
       - labeled
+  schedule:
+    - cron: '30 5 * * 1,3'
+    - cron: '30 5 * * 2,4'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
